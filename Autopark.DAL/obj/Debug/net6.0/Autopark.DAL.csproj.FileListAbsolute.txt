@@ -1,0 +1,12 @@
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\bin\Debug\net6.0\Autopark.DAL.deps.json
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\bin\Debug\net6.0\Autopark.DAL.dll
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\bin\Debug\net6.0\Autopark.DAL.pdb
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\obj\Debug\net6.0\Autopark.DAL.csproj.AssemblyReference.cache
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\obj\Debug\net6.0\Autopark.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\obj\Debug\net6.0\Autopark.DAL.AssemblyInfoInputs.cache
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\obj\Debug\net6.0\Autopark.DAL.AssemblyInfo.cs
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\obj\Debug\net6.0\Autopark.DAL.csproj.CoreCompileInputs.cache
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\obj\Debug\net6.0\Autopark.DAL.dll
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\obj\Debug\net6.0\refint\Autopark.DAL.dll
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\obj\Debug\net6.0\Autopark.DAL.pdb
+D:\net core\incubator tasks\WebAutopark\Autopark.DAL\obj\Debug\net6.0\ref\Autopark.DAL.dll
