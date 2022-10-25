@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Autopark.DAL",
+    "\\WebAutopark"
   ],
   "SelectedNode": "\\WebAutopark.sln",
   "PreviewInSolutionExplorer": false
