@@ -791,6 +791,20 @@
             "rid": "win"
           }
         }
+      },
+      "Autopark.DAL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Dapper": "2.0.123",
+          "Microsoft.Data.SqlClient": "5.0.1"
+        },
+        "compile": {
+          "bin/placeholder/Autopark.DAL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Autopark.DAL.dll": {}
+        }
       }
     }
   },
@@ -2588,10 +2602,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Autopark.DAL/1.0.0": {
+      "type": "project",
+      "path": "../Autopark.DAL/Autopark.DAL.csproj",
+      "msbuildProject": "../Autopark.DAL/Autopark.DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Autopark.DAL >= 1.0.0",
       "Dapper >= 2.0.123",
       "Microsoft.Data.SqlClient >= 5.0.1"
     ]
@@ -2622,7 +2642,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\net core\\incubator tasks\\WebAutopark\\Autopark.DAL\\Autopark.DAL.csproj": {
+              "projectPath": "D:\\net core\\incubator tasks\\WebAutopark\\Autopark.DAL\\Autopark.DAL.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

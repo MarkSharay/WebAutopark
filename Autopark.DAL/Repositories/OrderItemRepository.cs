@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Autopark.DAL.Entities;
+using Autopark.DAL.Interfaces;
 
 namespace Autopark.DAL.Repositories
 {
-    internal class OrderItemRepository
+    public class OrderItemRepository:IRepository<OrderItem>
     {
         string connectionString = null;
         public OrderItemRepository(string conn)
@@ -25,11 +26,11 @@ namespace Autopark.DAL.Repositories
             }
         }
 
-        public Component Get(int id)
+        public OrderItem Get(int id)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<Component>("SELECT * FROM OrderItems WHERE OrderItemId = @id", new { id }).FirstOrDefault();
+                return db.Query<OrderItem>("SELECT * FROM OrderItems WHERE OrderItemId = @id", new { id }).FirstOrDefault();
             }
         }
 

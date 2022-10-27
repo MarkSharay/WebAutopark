@@ -21,14 +21,6 @@ namespace Autopark.DAL.Entities
             TypeName = typeName;
             TaxCoefficient = taxCoefficient;
         }
-        public VehicleType(string typeName)
-        {
-            TypeName=typeName;
-        }
-        public VehicleType(double taxCoefficient)
-        {
-            TaxCoefficient = taxCoefficient;
-        }
 
         public void Display()
         {

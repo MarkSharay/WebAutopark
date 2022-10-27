@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Dapper;
 namespace Autopark.DAL.Repositories
 {
-    internal class ComponentRepository:IRepository<Component>
+    public class ComponentRepository:IRepository<Component>
     {
         string connectionString = null;
         public ComponentRepository(string conn)

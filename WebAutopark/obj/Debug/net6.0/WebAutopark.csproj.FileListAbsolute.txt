@@ -60,3 +60,5 @@ D:\net core\incubator tasks\WebAutopark\WebAutopark\obj\Debug\net6.0\refint\WebA
 D:\net core\incubator tasks\WebAutopark\WebAutopark\obj\Debug\net6.0\WebAutopark.pdb
 D:\net core\incubator tasks\WebAutopark\WebAutopark\obj\Debug\net6.0\WebAutopark.genruntimeconfig.cache
 D:\net core\incubator tasks\WebAutopark\WebAutopark\obj\Debug\net6.0\ref\WebAutopark.dll
+D:\net core\incubator tasks\WebAutopark\WebAutopark\bin\Debug\net6.0\Autopark.DAL.dll
+D:\net core\incubator tasks\WebAutopark\WebAutopark\bin\Debug\net6.0\Autopark.DAL.pdb
