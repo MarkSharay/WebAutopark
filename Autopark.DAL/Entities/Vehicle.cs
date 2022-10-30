@@ -8,15 +8,16 @@ namespace Autopark.DAL.Entities
 {
     public class Vehicle//:IComparable<Vehicle>
     {
-        public int VehicleId { get; private set; }
+        public int VehicleId { get; set; }
+        public int VehicleTypeId { get; set; }
         public VehicleType Type { get; set; }
-        public string Model { get; private set; }
-        public string Number { get; private set; }
-        public double Weight { get; private set; }
-        public int Year { get; private set; }
-        public int MileAge { get; private set; }
-        public Colors Color { get; private set; }
-        public double Volume { get; private set; }
+        public string Model { get; set; }
+        public string Number { get; set; }
+        public double Weight { get; set; }
+        public int Year { get; set; }
+        public int MileAge { get; set; }
+        public Colors Color { get; set; }
+        public double Volume { get; set; }
 
         public Vehicle(VehicleType type,  string model, string number, double weight, int year, int mileAge, Colors color, double volume)
         {

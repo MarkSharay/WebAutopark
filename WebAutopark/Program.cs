@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddMvc();
-//builder.Services.AddTransient<IRepository<VehicleType>, VehicleTypeRepository>(provider => new VehicleTypeRepository(builder.Configuration.GetConnectionString("Default Connection")));
+builder.Services.AddTransient<IRepository<VehicleType>, VehicleTypeRepository>(provider => new VehicleTypeRepository(builder.Configuration.GetConnectionString("Default Connection")));
 builder.Services.AddTransient<IRepository<Vehicle>, VehicleRepository>(provider => new VehicleRepository(builder.Configuration.GetConnectionString("Default Connection")));
 builder.Services.AddTransient<IRepository<Order>, OrderRepository>(provider => new OrderRepository(builder.Configuration.GetConnectionString("Default Connection")));
 builder.Services.AddTransient<IRepository<OrderItem>, OrderItemRepository>(provider => new OrderItemRepository(builder.Configuration.GetConnectionString("Default Connection")));
