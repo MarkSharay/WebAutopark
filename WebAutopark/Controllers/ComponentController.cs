@@ -14,59 +14,47 @@ namespace WebAutopark.Controllers
 
         public async Task<IActionResult> Index(string sortOption)
         {
-            var vehicles = await vehicleRepository.GetList();
+            var components = await componentRepository.GetList();
 
-            var vehicleTypes = await vehicleTypeRepository.GetList();
-
-            foreach (var item in vehicles)
-            {
-                item.Type = await vehicleTypeRepository.Get(item.VehicleTypeId);
-            }
             switch (sortOption)
             {
-                case "model":
-                    vehicles = vehicles.OrderBy(vehicles => vehicles.Model);
-                    break;
-                case "number":
-                    vehicles = vehicles.OrderBy(vehicles => vehicles.Number);
-                    break;
-                case "type":
-                    vehicles = vehicles.OrderBy(vehicles => vehicles.Type.TypeName);
+                case "name":
+                    components = components.OrderBy(components=>components.Name);
                     break;
                 case "id":
-                    vehicles = vehicles.OrderBy(vehicles => vehicles.VehicleId);
+                    components = components.OrderBy(vehicles => vehicles.ComponentId);
                     break;
                 default:
-                    vehicles = vehicles.OrderBy(vehicles => vehicles.VehicleId);
+                    components = components.OrderBy(vehicles => vehicles.ComponentId);
                     break;
             }
 
-            return View(vehicles);
+            return View(components);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Vehicle vehicle)
+        public async Task<ActionResult> Create(Component component)
         {
-            await vehicleRepository.Create(vehicle);
+            await componentRepository.Create(component);
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         public async Task<ActionResult> Delete(int id)
         {
-            await vehicleRepository.Delete(id);
+            await componentRepository.Delete(id);
             return RedirectToAction("Index");
         }
 
         public async Task<ActionResult> Edit(int id)
         {
-            Vehicle vehicle = await vehicleRepository.Get(id);
-            return View(vehicle);
+            Component component = await componentRepository.Get(id);
+            return View(component);
         }
 
-        public async Task<ActionResult> ComfirmEdit(Vehicle vehicle)
+        public async Task<ActionResult> ComfirmEdit(Component component)
         {
-            await vehicleRepository.Update(vehicle);
+            await componentRepository.Update(component);
             return RedirectToAction("Index");
         }
     }
