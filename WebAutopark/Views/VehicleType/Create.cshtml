@@ -1,0 +1,23 @@
+﻿@using Autopark.DAL.Entities;
+@model VehicleType;
+
+@{
+    ViewData["Title"] = "Create vehicle";
+}
+<h1>@ViewData["Title"]</h1>
+<button type="button">
+     <a class="nav-link text-dark" asp-area="" asp-controller="VehicleType" asp-action="Index">Back</a>
+</button>
+<br />
+<form asp-controller="VehicleType" asp-action="Create">
+    <div class="form-group">
+        <label>Vehicle name</label>
+        <input type="text" asp-for="TypeName" />
+    </div>
+    <div class="form-group">
+        <label>Coefficient of tax</label>
+        <input asp-for="TaxCoefficient" />
+    </div>
+    <button type="submit">Submit</button>
+</form>
+

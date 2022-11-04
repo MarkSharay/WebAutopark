@@ -2,10 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\Autopark.DAL",
+    "\\Autopark.DAL\\Entities",
     "\\Autopark.DAL\\Interfaces",
     "\\Autopark.DAL\\Repositories",
     "\\WebAutopark",
-    "\\WebAutopark\\Controllers"
+    "\\WebAutopark\\Controllers",
+    "\\WebAutopark\\Views",
+    "\\WebAutopark\\Views\\Vehicle",
+    "\\WebAutopark\\Views\\VehicleType"
   ],
   "SelectedNode": "\\WebAutopark.sln",
   "PreviewInSolutionExplorer": false

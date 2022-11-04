@@ -1,6 +1,10 @@
-﻿using Autopark.DAL.Interfaces;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Autopark.DAL.Interfaces;
 using Autopark.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebAutopark.Controllers
 {
@@ -29,7 +33,7 @@ namespace WebAutopark.Controllers
                     vehicles = vehicles.OrderBy(vehicles => vehicles.Model);
                     break;
                 case "number":
-                    vehicles = vehicles.OrderBy(vehicles => vehicles.Number);
+                    vehicles = vehicles.OrderBy(vehicles => vehicles.RegistrationNumber);
                     break;
                 case "type":
                     vehicles = vehicles.OrderBy(vehicles => vehicles.Type.TypeName);
@@ -43,6 +47,12 @@ namespace WebAutopark.Controllers
             }
             
             return View(vehicles);
+        }
+        public async Task<IActionResult> Create()
+        {
+            var types = await vehicleTypeRepository.GetList();
+            ViewBag.types = types.Select(type => new SelectListItem(type.TypeName, type.VehicleTypeId.ToString()));
+            return View();
         }
 
         [HttpPost]
@@ -61,6 +71,8 @@ namespace WebAutopark.Controllers
 
         public async Task<ActionResult> Edit(int id)
         {
+            var types = await vehicleTypeRepository.GetList();
+            ViewBag.types = types.Select(type => new SelectListItem(type.TypeName, type.VehicleTypeId.ToString()));
             Vehicle vehicle = await vehicleRepository.Get(id);
             return View(vehicle);
         }

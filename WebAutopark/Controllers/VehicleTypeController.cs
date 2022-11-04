@@ -15,34 +15,39 @@ namespace WebAutopark.Controllers
             this.repository = repository;
         }
 
-        public async Task<ActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             var types = await repository.GetList();
             return View(types);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public async Task<ActionResult> Create(VehicleType vehicleType)
+        public async Task<IActionResult> Create(VehicleType vehicleType)
         {
             await repository.Create(vehicleType);
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             await repository.Delete(id);
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             VehicleType type = await repository.Get(id);
             return View(type);
         }
 
         [HttpPost]
-        public async Task<ActionResult> EditConfirm(VehicleType type)
+        public async Task<IActionResult> EditConfirm(VehicleType type)
         {
             await repository.Update(type);
             return RedirectToAction("Index");

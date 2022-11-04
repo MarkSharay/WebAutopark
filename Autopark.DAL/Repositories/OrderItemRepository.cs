@@ -18,49 +18,49 @@ namespace Autopark.DAL.Repositories
         {
             connectionString = conn;
         }
-        public List<OrderItem> GetList()
+        public async Task<IEnumerable<OrderItem>> GetList()
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<OrderItem>("SELECT * FROM OrderItems").ToList();
+                return await db.QueryAsync<OrderItem>("SELECT * FROM OrderItems");
             }
         }
 
-        public OrderItem Get(int id)
+        public async Task<OrderItem> Get(int id)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                return db.Query<OrderItem>("SELECT * FROM OrderItems WHERE OrderItemId = @id", new { id }).FirstOrDefault();
+                return await db.QueryFirstAsync<OrderItem>("SELECT * FROM OrderItems WHERE OrderItemId = @id", new { id });
             }
         }
 
-        public void Create(OrderItem orderItem)
+        public async Task Create(OrderItem orderItem)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 var sqlQuery = "INSERT INTO OrderItems " +
                     "(OrderId, ComponentId, Quantity)" +
                     " VALUES(@OrderId, @ComponentId, @Quantity)";
-                db.Execute(sqlQuery, orderItem);
+                await db.ExecuteAsync(sqlQuery, orderItem);
             }
         }
 
-        public void Update(OrderItem orderItem)
+        public async Task Update(OrderItem orderItem)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 var sqlQuery = "UPDATE Components SET OrderID = @OrderId, ComponentId = @ComponentId, Quantity = @Quantity" +
                     "WHERE OrderItemId = @OrderItemId";
-                db.Execute(sqlQuery, orderItem);
+                await db.ExecuteAsync(sqlQuery, orderItem);
             }
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 var sqlQuery = "DELETE FROM OrderItems WHERE OrderItemId = @id";
-                db.Execute(sqlQuery, new { id });
+                await db.ExecuteAsync(sqlQuery, new { id });
             }
         }
     }

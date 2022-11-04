@@ -8,28 +8,8 @@ namespace Autopark.DAL.Entities
 {
     public class VehicleType
     {
-        public int VehicleTypeId { get; private set; }
-        public string? TypeName { get; private set; }
-        public double TaxCoefficient { get; private set; }
-
-        public VehicleType()
-        {
-            TypeName = string.Empty;
-        }
-        public VehicleType(string typeName, double taxCoefficient = 1)
-        {
-            TypeName = typeName;
-            TaxCoefficient = taxCoefficient;
-        }
-
-        public void Display()
-        {
-            Console.WriteLine($" TypeName: {TypeName}");
-            Console.WriteLine($" TaxCoefficient: {TaxCoefficient}");
-        }
-        public override string ToString()
-        {
-            return $"{VehicleTypeId};{TypeName};{TaxCoefficient}";
-        }
+        public int VehicleTypeId { get; set; }
+        public string TypeName { get; set; }
+        public double TaxCoefficient { get; set; }
     }
 }
