@@ -33,13 +33,13 @@ namespace Autopark.DAL.Entities
         //{
         //    return GetTotalIncome()-GetCalcTaxPerMonth();
         //}
-        //public double GetCalcTaxPerMonth()
-        //{
-        //    return (this.Weight * 0.00013) + (Type.TaxCoefficient * 30) + 5;
-        //}
+        public double GetCalcTaxPerMonth()
+        {
+            return (this.Weight * 0.00013) + (Type.TaxCoefficient * 30) + 5;
+        }
         //public int CompareTo(Vehicle v)
         //{
-  
+
         //    if(v != null)
         //    {
         //        if(this.GetCalcTaxPerMonth() < v.GetCalcTaxPerMonth())

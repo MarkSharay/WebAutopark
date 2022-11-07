@@ -10,9 +10,9 @@ namespace WebAutopark.Controllers
 
         private readonly IRepository<VehicleType> repository;
 
-        public VehicleTypeController(IRepository<VehicleType> repository)
+        public VehicleTypeController(IRepository<VehicleType> _repository)
         {
-            this.repository = repository;
+            repository = _repository;
         }
 
         public async Task<IActionResult> Index()
@@ -46,7 +46,7 @@ namespace WebAutopark.Controllers
             return View(type);
         }
 
-        [HttpPost]
+        [HttpPost()]
         public async Task<IActionResult> EditConfirm(VehicleType type)
         {
             await repository.Update(type);

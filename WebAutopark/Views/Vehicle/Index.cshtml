@@ -30,7 +30,7 @@
     {
         <tr>
             <td>@item.VehicleId</td>
-            <td>@item.VehicleType.TypeName</td>
+            <td>@item.Type.TypeName</td>
             <td>@item.Model</td>
             <td>@item.RegistrationNumber</td>
             <td>@item.Weight</td>
@@ -38,13 +38,18 @@
             <td>@item.Volume</td>
             <td>@item.FuelConsumption</td>
             <td>
-                <form method="post" asp-controller="VehicleType" asp-action="Delete" asp-route-id="@item.VehicleId">
+                <form method="post" asp-controller="Vehicle" asp-action="Delete" asp-route-id="@item.VehicleId">
                     <button class="btn-danger" type="submit">Delete</button>
                 </form>
             </td>
             <td>
-                <form method="post" asp-controller="VehicleType" asp-action="Edit" asp-route-id="@item.VehicleId">
+                <form method="post" asp-controller="Vehicle" asp-action="Edit" asp-route-id="@item.VehicleId">
                     <button class="btn-warning" type="submit">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form method="get" asp-controller="Vehicle" asp-action="GetInfo" asp-route-id="@item.VehicleId">
+                    <button type="submit" class="btn btn-warning">Info</button>
                 </form>
             </td>
         </tr>

@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Components";
+}
+
+<h2>@ViewData["Title"]</h2>
+<button type="submit" class="btn">
+    <a asp-controller="Component" asp-action="Create">
+        Create component
+    </a>
+</button>
+
+<br>
+<table class="table table-hover">
+
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ComponentId</td>
+            <td>@item.Name</td>
+            <td>
+                <form method="post" asp-controller="Component" asp-action="Delete" asp-route-id="@item.ComponentId">
+                    <button class="btn-danger" type="submit">Delete</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" asp-controller="Component" asp-action="Edit" asp-route-id="@item.ComponentId">
+                    <button class="btn-warning" type="submit">Edit</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+

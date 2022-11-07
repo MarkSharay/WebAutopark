@@ -32,6 +32,11 @@ namespace WebAutopark.Controllers
             return View(components);
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<ActionResult> Create(Component component)
         {

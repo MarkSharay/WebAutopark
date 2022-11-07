@@ -1,0 +1,43 @@
+﻿@{
+	ViewData["Title"] = "Orders";
+}
+
+<h2>@ViewData["Title"]</h2>
+<button type="submit" class="btn">
+	<a asp-controller="Order" asp-action="Create">
+		Create order
+	</a>
+</button>
+
+<br>
+<table class="table table-hover">
+
+	<tr>
+		<th scope="col">Id</th>
+		<th scope="col">Vehicle</th>
+		<th scope="col">Date</th>
+		<th></th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@item.OrderId</td>
+			<td>@item.Vehicle.Model</td>
+			<td>@item.Date</td>
+			<td>
+				<div class="btn-group w-75" role="group" style="padding-left: 25px">
+					<form method="get" asp-controller="OrderItem" asp-action="Create" asp-route-id="@item.OrderId">
+						<button type="submit" class="btn btn-success">
+							Add components
+						</button>
+					</form>
+					<form method="get" asp-controller="OrderItem" asp-action="Index" asp-route-id="@item.OrderId">
+						<button type="submit" class="btn btn-info">Info</button>
+					</form>
+				</div>
+			</td>
+		</tr>
+	}
+</table>
+
+

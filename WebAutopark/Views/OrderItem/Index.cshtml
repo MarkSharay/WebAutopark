@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = @ViewBag.Vehicle.Model +" "+ @ViewBag.Vehicle.RegistrationNumber  + " components";
+}
+<h2>@ViewData["Title"]</h2>
+<br/>
+<table class="table">
+    <tr>
+        <th>Component: </th>
+        <th>Component quantity: </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Component.Name</td>
+            <td>@item.Quantity</td>
+        </tr>
+    }
+</table>
+<br/>
+<div>
+    <a asp-action="Index" asp-controller="Order">Back</a>
+</div>

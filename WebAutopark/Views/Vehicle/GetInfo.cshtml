@@ -1,0 +1,37 @@
+﻿@using Autopark.DAL.Entities;
+@model Vehicle;
+@{
+	ViewData["Title"] = Model.Model + " " + Model.RegistrationNumber + " info:";
+}
+<h2>@ViewData["Title"]</h2>
+
+<p>
+	<form asp-action="GetInfo" asp-controller="Vehicle">
+		<ul>
+			<li>Type: @Model.Type.TypeName</li>
+
+			<li>Model Name: @Model.Model</li>
+
+			<li>Registration Number: @Model.RegistrationNumber</li>
+
+			<li>Weight: @Model.Weight</li>
+
+			<li>Manufacture Year: @Model.Year</li>
+
+			<li>Mileage: @Model.MileAge km</li>
+
+			<li>Color: @Model.Color</li>
+
+			<li>Volume: @Model.Volume</li>
+
+			<li>Fuel Consumption: @Model.FuelConsumption</li>
+
+			<li>Road tax amount per month: @Model.GetCalcTaxPerMonth().ToString("0.00")</li>
+		</ul>
+
+
+	</form>
+	<div>
+		<a asp-action="Index" asp-controller="Vehicle">Back to List</a>
+	</div>
+</p>

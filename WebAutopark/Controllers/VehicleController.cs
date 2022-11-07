@@ -5,6 +5,7 @@ using Autopark.DAL.Interfaces;
 using Autopark.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Autopark.DAL.Repositories;
 
 namespace WebAutopark.Controllers
 {
@@ -76,11 +77,18 @@ namespace WebAutopark.Controllers
             Vehicle vehicle = await vehicleRepository.Get(id);
             return View(vehicle);
         }
-
-        public async Task<ActionResult> ComfirmEdit(Vehicle vehicle)
+        [HttpPost()]
+        public async Task<ActionResult> ConfirmEdit(Vehicle vehicle)
         {
             await vehicleRepository.Update(vehicle);
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public async Task<ActionResult> GetInfo(int id)
+        {
+            var vehicle = await vehicleRepository.Get(id);
+            vehicle.Type = await vehicleTypeRepository.Get(vehicle.VehicleTypeId);
+            return View(vehicle);
         }
     }
 }

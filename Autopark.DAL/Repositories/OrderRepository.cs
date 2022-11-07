@@ -30,13 +30,14 @@ namespace Autopark.DAL.Repositories{
             }
         }
 
+
         public async Task Create(Order order)
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 var sqlQuery = "INSERT INTO Orders " +
-                    "(Date)" +
-                    " VALUES(@Date)";
+                    "(VehicleId, Date)" +
+                    " VALUES(@VehicleId, @Date)";
                 await db.ExecuteAsync(sqlQuery, order);
             }
         }

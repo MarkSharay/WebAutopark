@@ -1,13 +1,12 @@
 ﻿@using Autopark.DAL.Entities;
 @model Vehicle;
-@ViewBag.types = types.Select(type => new SelectListItem(type.Type_Name,type.Id.ToString()));
 
 @{
     ViewData["Title"] = "Vehicle editor";
 }
 <h1>@ViewData["Title"]</h1>
 <br />
-<form asp-action="EditConfirm" asp-controller="Vehicle">
+<form asp-action="ConfirmEdit" asp-controller="Vehicle">
     <div>
         <input type="hidden" asp-for="VehicleId" />
         <div class="form-group">

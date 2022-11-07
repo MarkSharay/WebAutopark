@@ -16,12 +16,6 @@
     <ProjectReference Include="..\Autopark.DAL\Autopark.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Order\" />
-    <Folder Include="Views\OrderItem\" />
-    <Folder Include="Views\Component\" />
-  </ItemGroup>
-
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

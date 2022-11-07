@@ -1,0 +1,19 @@
+﻿@using Autopark.DAL.Entities;
+@model Component;
+@{
+	ViewData["Title"] = "Component editor";
+}
+
+<h1>@ViewData["Title"]</h1>
+<br />
+<button type="button">
+     <a class="nav-link text-dark" asp-area="" asp-controller="VehicleType" asp-action="Index">Back</a>
+</button>
+<form asp-controller="VehicleType" asp-action="EditConfirm">
+	<input disabled value="@Model.ComponentId" />
+	<div class="form-group">
+		<label class="col-1">ID</label>
+		<input class="col-2" disabled asp-for="Name" />
+	</div>
+	<button type="submit">Submit</button>
+</form>

@@ -2,72 +2,61 @@
 using Autopark.DAL.Interfaces;
 using Autopark.DAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebAutopark.Controllers
 {
     public class OrderItemController : Controller
     {
         private readonly IRepository<Component> componentRepository;
-        private readonly IRepository<Order> orderRepository;
         private readonly IRepository<OrderItem> orderItemRepository;
-        public OrderItemController(IRepository<Component> _componentRepository, IRepository<Order> _orderRepository, IRepository<OrderItem> _orderItemRepository)
+        private readonly IRepository<Order> orderRepository;
+        private readonly IRepository<Vehicle> vehicleRepository; 
+        public OrderItemController(IRepository<Component> _componentRepository, IRepository<Order> _orderRepository, IRepository<OrderItem> _orderItemRepository, IRepository<Vehicle> _vehicleRepository)
         {
-            componentRepository = _componentRepository;
             orderRepository = _orderRepository;
+            componentRepository = _componentRepository;
             orderItemRepository = _orderItemRepository;
+            vehicleRepository = _vehicleRepository;
         }
 
-        public async Task<IActionResult> Index(string sortOption)
+        [HttpGet]
+        public async Task<IActionResult> Create(int id)
         {
-            var orderItems = await orderItemRepository.GetList();
-            var orders = await orderRepository.GetList();
             var components = await componentRepository.GetList();
-
-            foreach (var item in orderItems)
-            {
-                item.Order = await orderRepository.Get(item.OrderId);
-                item.Component = await componentRepository.Get(item.ComponentId);
-            }
-            switch (sortOption)
-            {
-                case "date":
-                    orders = orders.OrderBy(orders => orders.Date);
-                    break;
-                case "id":
-                    orders = orders.OrderBy(orders => orders.OrderId);
-                    break;
-                default:
-                    orders = orders.OrderBy(orders => orders.OrderId);
-                    break;
-            }
-
-            return View(orderItems);
+            var order = await orderRepository.Get(id);
+            var vehicle = await vehicleRepository.Get(order.VehicleId);
+            ViewBag.Vehicle = vehicle;
+            ViewBag.Components = components.Select(component => new SelectListItem(component.Name, component.ComponentId.ToString()));
+            return View(new OrderItem() { OrderId = id});
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(OrderItem orderItem)
+        public async Task<IActionResult> Create(OrderItem orderItem)
         {
             await orderItemRepository.Create(orderItem);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Order");
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Delete(int id)
+        [HttpGet]
+        public async Task<ActionResult> Index(int id)
         {
-            await orderItemRepository.Delete(id);
-            return RedirectToAction("Index");
-        }
+            var order = await orderRepository.Get(id);
+            var vehicle = await vehicleRepository.Get(order.VehicleId);
+            var orderItems = await orderItemRepository.GetList();
+            var parts = new List<OrderItem>();
+            ViewBag.Vehicle = vehicle;
+            
+            foreach (var orderItem in orderItems)
+            {
+                if (orderItem.OrderId == id)
+                {
+                    orderItem.Component = await componentRepository.Get(orderItem.ComponentId);
+                    parts.Add(orderItem);
+                }
+            }
 
-        public async Task<ActionResult> Edit(int id)
-        {
-            OrderItem orderItem = await orderItemRepository.Get(id);
-            return View(orderItem);
-        }
-
-        public async Task<ActionResult> ComfirmEdit(OrderItem orderItem)
-        {
-            await orderItemRepository.Update(orderItem);
-            return RedirectToAction("Index");
+            return View(parts);
         }
     }
 }

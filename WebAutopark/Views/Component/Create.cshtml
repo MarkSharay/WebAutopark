@@ -1,0 +1,18 @@
+﻿@using Autopark.DAL.Entities;
+@model Component;
+
+@{
+    ViewData["Title"] = "Create component";
+}
+<h1>@ViewData["Title"]</h1>
+<button type="button">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Component" asp-action="Index">Back</a>
+</button>
+<br />
+<form asp-controller="Component" asp-action="Create">
+    <div class="form-group">
+        <label>Component name</label>
+        <input type="text" asp-for="Name" />
+    </div>
+    <button type="submit">Submit</button>
+</form>

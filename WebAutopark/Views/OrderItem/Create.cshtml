@@ -1,0 +1,30 @@
+﻿@using Autopark.DAL.Entities;
+@model OrderItem;
+@{
+    ViewData["Title"] = "Add component for vehicle";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Adding components for @ViewBag.Vehicle.Model</h3>
+<form asp-controller="OrderItem" asp-action="Create">
+
+	<div>
+		<div class="form-group">
+			<label asp-for="ComponentId" class="mr-sm-2">Choose a component</label>
+			<select class="form-control" asp-for="ComponentId" asp-items="@ViewBag.Components" ></select>
+		</div>
+
+		<div class="form-group">
+			<label asp-for="Quantity">Choose the quantity</label>
+			<input class="form-control" asp-for="Quantity" value=0 />
+		</div>
+		<input hidden asp-for="OrderId" />
+		<div class="form-group">
+			<button class="button button-primary" type="submit">Submit</button>
+		</div>
+		
+	</div>
+	
+</form>
+
