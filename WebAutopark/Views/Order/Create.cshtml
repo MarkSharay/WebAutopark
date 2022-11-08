@@ -5,21 +5,21 @@
 	ViewData["Title"] = "Create order";
 }
 <h1>@ViewData["Title"]</h1>
-<button type="button">
-	<a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">Back</a>
+<button class="btn btn-primary btn-outline-dark">
+	<a style="text-decoration: none; color: white;" asp-controller="Order" asp-action="Index">Back</a>
 </button>
 <br />
 <form asp-action="Create" asp-controller="Order" >
 	<div>
 		<div class="form-group">
-			<label>Date</label>
-			<input class="form-control  form-control-sm" type="date" asp-for="Date" />
+			<label class="col-1">Date</label>
+			<input class="col-2 form-control  form-control-sm" type="date" asp-for="Date" />
 		</div>
 		<div class="form-group">
-			<label>Vehicle Id</label>
-			<select class="form-control  form-control-sm" class="form-control" type="text" asp-for="VehicleId" asp-items="@ViewBag.vehicles"></select>
+			<label class="col-1">Vehicle Id</label>
+			<select class="col-2 form-control  form-control-sm" class="form-control" type="text" asp-for="VehicleId" asp-items="@ViewBag.vehicles"></select>
 		</div>
 
 	</div>
-	<button type="submit">Submit</button>
+	<button class="btn btn-success btn-outline-dark" type="submit">Submit</button>
 </form>

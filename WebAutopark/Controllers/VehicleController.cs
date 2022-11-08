@@ -33,14 +33,11 @@ namespace WebAutopark.Controllers
                 case "model":
                     vehicles = vehicles.OrderBy(vehicles => vehicles.Model);
                     break;
-                case "number":
-                    vehicles = vehicles.OrderBy(vehicles => vehicles.RegistrationNumber);
+                case "mileage":
+                    vehicles = vehicles.OrderBy(vehicles => vehicles.MileAge);
                     break;
                 case "type":
                     vehicles = vehicles.OrderBy(vehicles => vehicles.Type.TypeName);
-                    break;
-                case "id":
-                    vehicles = vehicles.OrderBy(vehicles => vehicles.VehicleId);
                     break;
                 default:
                     vehicles = vehicles.OrderBy(vehicles => vehicles.VehicleId);

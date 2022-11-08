@@ -55,7 +55,7 @@ namespace Autopark.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "DELETE FROM Vehicles WHERE Id = @id";
+                var sqlQuery = "DELETE FROM Vehicles WHERE VehicleId = @id";
                 await db.ExecuteAsync(sqlQuery, new { id });
             }
         }

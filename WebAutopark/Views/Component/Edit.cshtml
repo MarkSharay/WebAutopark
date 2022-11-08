@@ -6,14 +6,19 @@
 
 <h1>@ViewData["Title"]</h1>
 <br />
-<button type="button">
-     <a class="nav-link text-dark" asp-area="" asp-controller="VehicleType" asp-action="Index">Back</a>
+<button class="btn btn-primary btn-outline-dark">
+	<a style="text-decoration:none; color: white;" asp-controller="Component" asp-action="Index">Back</a>
 </button>
 <form asp-controller="VehicleType" asp-action="EditConfirm">
-	<input disabled value="@Model.ComponentId" />
 	<div class="form-group">
 		<label class="col-1">ID</label>
-		<input class="col-2" disabled asp-for="Name" />
+		<input class="col-2" disabled value="@Model.ComponentId" />
 	</div>
-	<button type="submit">Submit</button>
+	
+	<div class="form-group">
+		<label class="col-1">Name</label>
+		<input class="col-2" asp-for="Name" />
+	</div>
+	<input hidden asp-for="ComponentId" />
+	<button class="btn btn-success btn-outline-dark" type="submit">Submit</button>
 </form>

@@ -1,43 +1,53 @@
-﻿@{
+﻿@using Autopark.DAL.Entities;
+@model IEnumerable<Order>;
+@{
 	ViewData["Title"] = "Orders";
 }
 
 <h2>@ViewData["Title"]</h2>
-<button type="submit" class="btn">
-	<a asp-controller="Order" asp-action="Create">
-		Create order
-	</a>
-</button>
 
 <br>
-<table class="table table-hover">
+@if (Model.Any())
+{
+	<table class="table table-hover">
 
-	<tr>
-		<th scope="col">Id</th>
-		<th scope="col">Vehicle</th>
-		<th scope="col">Date</th>
-		<th></th>
-	</tr>
-	@foreach (var item in Model)
-	{
 		<tr>
-			<td>@item.OrderId</td>
-			<td>@item.Vehicle.Model</td>
-			<td>@item.Date</td>
-			<td>
-				<div class="btn-group w-75" role="group" style="padding-left: 25px">
-					<form method="get" asp-controller="OrderItem" asp-action="Create" asp-route-id="@item.OrderId">
-						<button type="submit" class="btn btn-success">
-							Add components
-						</button>
-					</form>
-					<form method="get" asp-controller="OrderItem" asp-action="Index" asp-route-id="@item.OrderId">
-						<button type="submit" class="btn btn-info">Info</button>
-					</form>
-				</div>
-			</td>
+			<th scope="col">Id</th>
+			<th scope="col">Vehicle</th>
+			<th scope="col">Date</th>
+			<th></th>
+			<th></th>
 		</tr>
-	}
-</table>
+		@foreach (var item in Model)
+		{
+			<tr class="table-borderless">
+				<td>@item.OrderId</td>
+				<td>@item.Vehicle.Model</td>
+				<td>@item.Date</td>
+				<td>
+					<div class="btn-group w-75" role="group" style="padding-left: 25px">
+						<form method="get" asp-controller="OrderItem" asp-action="Create" asp-route-id="@item.OrderId">
+							<button type="submit" class="btn btn-success">
+								Add components
+							</button>
+						</form>
+						<form method="get" asp-controller="OrderItem" asp-action="Index" asp-route-id="@item.OrderId">
+							<button type="submit" class="btn btn-info">Info</button>
+						</form>
+					</div>
+				</td>
+			</tr>
+		}
+	</table>
+	<button type="submit" class="btn-success">
+		<a asp-action="Create" asp-controller="Order" style="text-decoration: none; color:white">Create order</a>
+	</button>
+}
+else
+{
+	<h3 class="">There are no any vehicle types in your data base. Click <a asp-action="Create" asp-controller="Order">here</a> to create first.</h3>
+	<h3>Before this <a asp-action="Index" asp-controller="Component">ensure</a> that at least one component have been created.</h3>
+}
+
 
 

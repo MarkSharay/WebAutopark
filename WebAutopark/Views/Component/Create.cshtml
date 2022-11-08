@@ -2,17 +2,17 @@
 @model Component;
 
 @{
-    ViewData["Title"] = "Create component";
+	ViewData["Title"] = "Create component";
 }
 <h1>@ViewData["Title"]</h1>
-<button type="button">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Component" asp-action="Index">Back</a>
+<button class="btn btn-primary btn-outline-dark">
+	<a style="text-decoration: none; color: white" asp-controller="Component" asp-action="Index">Back</a>
 </button>
 <br />
 <form asp-controller="Component" asp-action="Create">
-    <div class="form-group">
-        <label>Component name</label>
-        <input type="text" asp-for="Name" />
-    </div>
-    <button type="submit">Submit</button>
+	<div class="form-group">
+		<label class="col-1">Component name</label>
+		<input class="col-2" type="text" asp-for="Name" />
+	</div>
+	<button class="btn btn-success btn-outline-dark" type="submit">Submit</button>
 </form>

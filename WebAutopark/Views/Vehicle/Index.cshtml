@@ -1,57 +1,67 @@
-﻿@{
+﻿@using Autopark.DAL.Entities;
+@model IEnumerable<Vehicle>;
+@{
 	ViewData["Title"] = "Vehicle Types";
 }
 
 <h2>@ViewData["Title"]</h2>
-<button type="submit" class="btn">
-	<a asp-controller="Vehicle" asp-action="Create">
-		Create vehicle 
-	</a>
-</button>
+
 
 <br>
-<table class="table table-hover">
-    
-    <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Type</th>
-        <th scope="col">Model</th>
-        <th scope="col">Registration number</th>
-        <th scope="col">Weight</th>
-        <th scope="col">Year of release</th>
-        <th scope="col">Color</th>
-        <th scope="col">Mileage</th>
-        <th scope="col">Volume</th>
-        <th></th>
-        <th></th>
+@if(Model.Any()){
 
-    </tr>
-    @foreach (var item in Model)
-    {
+    <table class="table table-hover">
+
         <tr>
-            <td>@item.VehicleId</td>
-            <td>@item.Type.TypeName</td>
-            <td>@item.Model</td>
-            <td>@item.RegistrationNumber</td>
-            <td>@item.Weight</td>
-            <td>@item.Year</td>
-            <td>@item.Volume</td>
-            <td>@item.FuelConsumption</td>
-            <td>
-                <form method="post" asp-controller="Vehicle" asp-action="Delete" asp-route-id="@item.VehicleId">
-                    <button class="btn-danger" type="submit">Delete</button>
-                </form>
-            </td>
-            <td>
-                <form method="post" asp-controller="Vehicle" asp-action="Edit" asp-route-id="@item.VehicleId">
-                    <button class="btn-warning" type="submit">Edit</button>
-                </form>
-            </td>
-            <td>
-                <form method="get" asp-controller="Vehicle" asp-action="GetInfo" asp-route-id="@item.VehicleId">
-                    <button type="submit" class="btn btn-warning">Info</button>
-                </form>
-            </td>
+            <th scope="col">Id</th>
+            <th scope="col"><a asp-controller="Vehicle" asp-action="Index" asp-route-sortOption="@ViewData["type"]">Type</a></th>
+            <th scope="col"><a asp-controller="Vehicle" asp-action="Index" asp-route-sortOption="@ViewData["model"]">Model</a> </th>
+            <th scope="col">Registration number</th>
+            <th scope="col">Weight</th>
+            <th scope="col">Year of release</th>
+            <th scope="col">Color</th>
+            <th scope="col"><a asp-controller="Vehicle" asp-action="Index" asp-route-sortOption="@ViewData["mileage"]">Mile age</a></th>
+            <th scope="col">Volume</th>
+            <th></th>
+            <th></th>
+
         </tr>
-    }
-</table>
+        @foreach (var item in Model)
+        {
+            <tr class="table-primary">
+                <td >@item.VehicleId</td>
+                <td>@item.Type.TypeName</td>
+                <td>@item.Model</td>
+                <td>@item.RegistrationNumber</td>
+                <td>@item.Weight</td>
+                <td>@item.Year</td>
+                <td>@item.Volume</td>
+                <td>@item.FuelConsumption</td>
+                <td>
+                    <form method="post" asp-controller="Vehicle" asp-action="Delete" asp-route-id="@item.VehicleId">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" asp-controller="Vehicle" asp-action="Edit" asp-route-id="@item.VehicleId">
+                        <button class="btn btn-secondary" type="submit">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="get" asp-controller="Vehicle" asp-action="GetInfo" asp-route-id="@item.VehicleId">
+                        <button type="submit" class="btn btn-warning">Info</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+    
+        <button type="submit" class="btn-success">
+            <a asp-action="Create" asp-controller="Vehicle" style="text-decoration: none; color:white">Create vehicle</a>
+        </button>
+
+}else{
+    <h3 class="">There are no any vehicles in your data base. Click <a asp-action="Create" asp-controller="Vehicle">here</a> to create first</h3>
+    <h3>Before this <a asp-action="Index" asp-controller="VehicleType">ensure</a> that at least one vehicle type have been created.</h3>
+}
+

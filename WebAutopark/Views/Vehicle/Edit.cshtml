@@ -47,11 +47,13 @@
             <select class="form-control" asp-for="VehicleTypeId" asp-items="@ViewBag.types"></select>
         </div>
         <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-success" />
+            <input type="submit" value="Save" class="btn btn-success btn-outline-dark" />
         </div>
     </div>
 </form>
 
 <div>
-    <a asp-controller="Vehicle" asp-action="Index">Back to List</a>
+    <button class="btn btn-primary btn-outline-dark">
+		<a style="text-decoration: none; color: white;" asp-controller="Vehicle" asp-action="Index">Back</a>
+    </button>
 </div>

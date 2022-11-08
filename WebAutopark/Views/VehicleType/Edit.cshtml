@@ -6,10 +6,8 @@
 
 <h1>@ViewData["Title"]</h1>
 <br />
-<button type="button">
-     <a class="nav-link text-dark" asp-action="Index" asp-controller="VehicleType">Back</a>
-</button>
 <form asp-action="EditConfirm" asp-controller="VehicleType">
+	<div>
 	<div class="form-group">
 		<label class="col-1">ID</label>
 		<input class="col-2" hidden asp-for="VehicleTypeId" />
@@ -23,5 +21,12 @@
 		<label class="col-1">Coefficient of tax</label>
 		<input class="col-2" asp-for="TaxCoefficient" />
 	</div>
-	<button type="submit">Submit</button>
+	<button class="btn btn-success btn-outline-dark" style="color: white" type="submit">Submit</button>
+	</div>
 </form>
+<br />
+<div>
+	 <button class="btn btn-primary btn-outline-dark">
+		<a style="color: white; text-decoration: none;" asp-controller="VehicleType" asp-action="Index">Back</a>
+    </button>
+</div>
