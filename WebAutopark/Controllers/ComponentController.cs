@@ -12,23 +12,9 @@ namespace WebAutopark.Controllers
             componentRepository = _componentRepository;
         }
 
-        public async Task<IActionResult> Index(string sortOption)
+        public async Task<IActionResult> Index()
         {
             var components = await componentRepository.GetList();
-
-            switch (sortOption)
-            {
-                case "name":
-                    components = components.OrderBy(components=>components.Name);
-                    break;
-                case "id":
-                    components = components.OrderBy(vehicles => vehicles.ComponentId);
-                    break;
-                default:
-                    components = components.OrderBy(vehicles => vehicles.ComponentId);
-                    break;
-            }
-
             return View(components);
         }
 
