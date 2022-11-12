@@ -20,56 +20,15 @@ namespace Autopark.DAL.Entities
         public double Volume { get; set; }
         public double FuelConsumption { get; set; }
 
-        //public double GetTotalIncome()
-        //{
-        //    double sum = 0;
-        //    foreach(Rent rent in Rents)
-        //    {
-        //        sum += rent.Cost;
-        //    }
-        //    return sum;
-        //}
-        //public double GetTotalProfit()
-        //{
-        //    return GetTotalIncome()-GetCalcTaxPerMonth();
-        //}
+
         public double GetCalcTaxPerMonth()
         {
             return (this.Weight * 0.00013) + (Type.TaxCoefficient * 30) + 5;
         }
-        //public int CompareTo(Vehicle v)
-        //{
-
-        //    if(v != null)
-        //    {
-        //        if(this.GetCalcTaxPerMonth() < v.GetCalcTaxPerMonth())
-        //        {
-        //            return -1;
-        //        }else if(this.GetCalcTaxPerMonth() > v.GetCalcTaxPerMonth())
-        //        {
-        //            return 1;
-        //        }
-        //        else
-        //        {
-        //            return 0;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        throw new Exception("Null value was emitted");
-        //    }
-        //}
-
-        //public override bool Equals(object? obj)
-        //{
-        //    Vehicle vehicle = (Vehicle)obj;
-        //    return this.Type.TypeName == vehicle.Type.TypeName && this.Model == vehicle.Model;
-        //}
-
-        //public override string ToString()
-        //{
-        //    return Model.ToString();
-        //}
+        public double GetMaxKilometers()
+        {
+            return Volume / FuelConsumption * 100;
+        }
 
     }
 }

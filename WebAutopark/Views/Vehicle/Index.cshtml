@@ -14,14 +14,11 @@
 
         <tr>
             <th scope="col">Id</th>
-            <th scope="col"><a asp-controller="Vehicle" asp-action="Index" asp-route-sortOption="@ViewData["type"]">Type</a></th>
-            <th scope="col"><a asp-controller="Vehicle" asp-action="Index" asp-route-sortOption="@ViewData["model"]">Model</a> </th>
+            <th scope="col"><a asp-controller="Vehicle" asp-action="Index" asp-route-sortOption="type">Type</a></th>
+            <th scope="col"><a asp-controller="Vehicle" asp-action="Index" asp-route-sortOption="model">Model</a> </th>
             <th scope="col">Registration number</th>
-            <th scope="col">Weight</th>
-            <th scope="col">Year of release</th>
             <th scope="col">Color</th>
-            <th scope="col"><a asp-controller="Vehicle" asp-action="Index" asp-route-sortOption="@ViewData["mileage"]">Mile age</a></th>
-            <th scope="col">Volume</th>
+            <th scope="col"><a asp-controller="Vehicle" asp-action="Index" asp-route-sortOption="mileage">Mile age</a></th>
             <th></th>
             <th></th>
 
@@ -29,14 +26,12 @@
         @foreach (var item in Model)
         {
             <tr class="table-primary">
-                <td >@item.VehicleId</td>
+                <td>@item.VehicleId</td>
                 <td>@item.Type.TypeName</td>
                 <td>@item.Model</td>
                 <td>@item.RegistrationNumber</td>
-                <td>@item.Weight</td>
-                <td>@item.Year</td>
-                <td>@item.Volume</td>
-                <td>@item.FuelConsumption</td>
+                <td>@item.Color</td>
+                <td>@item.MileAge</td>
                 <td>
                     <form method="post" asp-controller="Vehicle" asp-action="Delete" asp-route-id="@item.VehicleId">
                         <button class="btn btn-danger" type="submit">Delete</button>

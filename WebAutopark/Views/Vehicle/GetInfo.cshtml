@@ -26,7 +26,9 @@
 
 			<li>Fuel Consumption: @Model.FuelConsumption</li>
 
-			<li>Road tax amount per month: @Model.GetCalcTaxPerMonth().ToString("0.00")</li>
+			<li>Road tax per month: @Model.GetCalcTaxPerMonth().ToString("0.00")</li>
+
+			<li>Max kilometers @Model.GetMaxKilometers().ToString("0")</li>
 		</ul>
 
 
