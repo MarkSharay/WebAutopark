@@ -21,7 +21,7 @@ namespace WebAutopark.Controllers
             return View(types);
         }
 
-        public IActionResult Create()
+        public IActionResult Create() //rename
         {
             return View();
         }
@@ -33,20 +33,20 @@ namespace WebAutopark.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpPost] //we usually use HttpDelete attribute for delete method
         public async Task<IActionResult> Delete(int id)
         {
             await repository.Delete(id);
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id) //rename
         {
             VehicleType type = await repository.Get(id);
             return View(type);
         }
 
-        [HttpPost()]
+        [HttpPost()] //parentheses
         public async Task<IActionResult> EditConfirm(VehicleType type)
         {
             await repository.Update(type);

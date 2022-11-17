@@ -10,8 +10,8 @@ namespace WebAutopark.Controllers
     {
         private readonly IRepository<Vehicle> vehicleRepository;
         private readonly IRepository<Order> orderRepository;
-        private readonly IRepository<OrderItem> orderItemRepository;
-        private readonly IRepository<Component> componentRepository;
+        private readonly IRepository<OrderItem> orderItemRepository; //You don't use this repo so you can remove it from here
+        private readonly IRepository<Component> componentRepository; //You don't use this repo so you can remove it from here
 
         public OrderController(IRepository<Vehicle> _vehicleRepository, IRepository<Order> _orderRepository, IRepository<OrderItem> _orderItemRepository, IRepository<Component> _componentRepository)
         {
@@ -29,7 +29,7 @@ namespace WebAutopark.Controllers
 
             foreach (var item in orders)
             {
-                item.Vehicle = await vehicleRepository.Get(item.VehicleId);
+                item.Vehicle = await vehicleRepository.Get(item.VehicleId); //you can use vehicles collection that you created above
             }
             switch (sortOption)
             {
@@ -47,7 +47,7 @@ namespace WebAutopark.Controllers
             return View(orders);
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create() //rename
         {
             var vehs = await vehicleRepository.GetList();
             ViewBag.vehicles = vehs.Select(vehicle => new SelectListItem(vehicle.Model, vehicle.VehicleId.ToString()));
@@ -61,7 +61,7 @@ namespace WebAutopark.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpPost]  //we usually use HttpDelete attribute for delete method
         public async Task<ActionResult> Delete(int id)
         {
             await orderRepository.Delete(id);

@@ -18,7 +18,7 @@ namespace WebAutopark.Controllers
             return View(components);
         }
 
-        public ActionResult Create()
+        public ActionResult Create() //rename
         {
             return View();
         }
@@ -30,14 +30,14 @@ namespace WebAutopark.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpPost] //we usually use HttpDelete attribute for delete method
         public async Task<ActionResult> Delete(int id)
         {
             await componentRepository.Delete(id);
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> Edit(int id) //rename
         {
             Component component = await componentRepository.Get(id);
             return View(component);

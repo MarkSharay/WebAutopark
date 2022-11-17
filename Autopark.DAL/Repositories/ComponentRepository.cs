@@ -12,7 +12,7 @@ namespace Autopark.DAL.Repositories
 {
     public class ComponentRepository:IRepository<Component>
     {
-        string connectionString = null;
+        string connectionString = null; //make it private readonly. No need to initialize here
         public ComponentRepository(string conn)
         {
             connectionString = conn;
@@ -37,7 +37,7 @@ namespace Autopark.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Components " +
+                var sqlQuery = "INSERT INTO Components " + //you can use '@' instead of concatenation
                     "(Name)" +
                     " VALUES(@Name)";
                 await db.ExecuteAsync(sqlQuery, component);
@@ -48,7 +48,7 @@ namespace Autopark.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Components SET Name = @Name" +
+                var sqlQuery = "UPDATE Components SET Name = @Name" + //you can use '@' instead of concatenation
                     "WHERE ComponentId = @ComponentId";
                 await db.ExecuteAsync(sqlQuery, component);
             }

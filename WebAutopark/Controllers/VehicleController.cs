@@ -27,7 +27,7 @@ namespace WebAutopark.Controllers
 
             foreach(var item in vehicles)
             {
-                item.Type = await vehicleTypeRepository.Get(item.VehicleTypeId);
+                item.Type = await vehicleTypeRepository.Get(item.VehicleTypeId); //you can use vehicleTypes collection that you created above
             }
             switch (sortOption){
                 case "model":
@@ -46,7 +46,7 @@ namespace WebAutopark.Controllers
             
             return View(vehicles);
         }
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create() //rename
         {
             var types = await vehicleTypeRepository.GetList();
             ViewBag.types = types.Select(type => new SelectListItem(type.TypeName, type.VehicleTypeId.ToString()));
@@ -60,21 +60,21 @@ namespace WebAutopark.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpPost] //we usually use HttpDelete attribute for delete method
         public async Task<ActionResult> Delete(int id)
         {
             await vehicleRepository.Delete(id);
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> Edit(int id) //rename
         {
             var types = await vehicleTypeRepository.GetList();
             ViewBag.types = types.Select(type => new SelectListItem(type.TypeName, type.VehicleTypeId.ToString()));
             Vehicle vehicle = await vehicleRepository.Get(id);
             return View(vehicle);
         }
-        [HttpPost()]
+        [HttpPost()] //parentheses
         public async Task<ActionResult> ConfirmEdit(Vehicle vehicle)
         {
             await vehicleRepository.Update(vehicle);

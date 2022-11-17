@@ -9,7 +9,7 @@
         public Component Component { get; set; }
         public int Quantity { get; set; }
 
-        public OrderItem(int orderId, int componentId, int quantity)
+        public OrderItem(int orderId, int componentId, int quantity) // Entities should not have constructors
         {
             OrderId = orderId;
             ComponentId = componentId;

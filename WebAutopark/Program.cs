@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddMvc();
+//it's better to create a variable and store connection string in it and then provide it as param to repos.
 builder.Services.AddTransient<IRepository<VehicleType>, VehicleTypeRepository>(provider => new VehicleTypeRepository(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<IRepository<Vehicle>, VehicleRepository>(provider => new VehicleRepository(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddTransient<IRepository<Order>, OrderRepository>(provider => new OrderRepository(builder.Configuration.GetConnectionString("DefaultConnection")));

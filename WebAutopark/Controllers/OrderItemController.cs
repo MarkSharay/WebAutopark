@@ -21,7 +21,7 @@ namespace WebAutopark.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create(int id)
+        public async Task<IActionResult> Create(int id) //rename
         {
             var components = await componentRepository.GetList();
             var order = await orderRepository.Get(id);
@@ -51,7 +51,7 @@ namespace WebAutopark.Controllers
             {
                 if (orderItem.OrderId == id)
                 {
-                    orderItem.Component = await componentRepository.Get(orderItem.ComponentId);
+                    orderItem.Component = await componentRepository.Get(orderItem.ComponentId); //you can create variable and call componentRepository.GetAll for it and then use created collection to add components for order items.
                     parts.Add(orderItem);
                 }
             }

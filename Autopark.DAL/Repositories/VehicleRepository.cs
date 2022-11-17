@@ -8,7 +8,7 @@ namespace Autopark.DAL.Repositories
 {
     public class VehicleRepository:IRepository<Vehicle>
     {
-        string connectionString = null;
+        string connectionString = null; //make it private readonly. No need to initialize here
         public VehicleRepository(string conn)
         {
             connectionString = conn;
@@ -33,7 +33,7 @@ namespace Autopark.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Vehicles " +
+                var sqlQuery = @"INSERT INTO Vehicles " + //you can use '@' instead of concatenation 
                     "(VehicleTypeId, Model, RegistrationNumber, Weight, Year, Mileage, Color, Volume, FuelConsumption)" +
                     " VALUES(@VehicleTypeId, @Model, @RegistrationNumber, @Weight, @Year, @Mileage, @Color, @Volume, @FuelConsumption)";
                 await db.ExecuteAsync(sqlQuery, vehicle);
@@ -44,7 +44,7 @@ namespace Autopark.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Vehicles SET VehicleTypeId = @VehicleTypeId, Model = @Model, RegistrationNumber = @RegistrationNumber," +
+                var sqlQuery = "UPDATE Vehicles SET VehicleTypeId = @VehicleTypeId, Model = @Model, RegistrationNumber = @RegistrationNumber," + //you can use '@' instead of concatenation 
                     " Weight = @Weight, Year = @Year, Mileage = @Mileage, Color = @Color, Volume = @Volume, FuelConsumption = @FuelConsumption " +
                     "WHERE VehicleId = @VehicleId";
                 await db.ExecuteAsync(sqlQuery, vehicle);

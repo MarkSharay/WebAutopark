@@ -9,7 +9,7 @@ namespace Autopark.DAL.Repositories
 {
     public class VehicleTypeRepository:IRepository<VehicleType>
     {
-        string connectionString = null;
+        string connectionString = null; //make it private readonly. No need to initialize here
         public VehicleTypeRepository(string conn)
         {
             connectionString = conn;

@@ -13,7 +13,7 @@ namespace Autopark.DAL.Repositories
 {
     public class OrderItemRepository:IRepository<OrderItem>
     {
-        string connectionString = null;
+        string connectionString = null; //make it private readonly. No need to initialize here
         public OrderItemRepository(string conn)
         {
             connectionString = conn;
@@ -38,7 +38,7 @@ namespace Autopark.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO OrderItems " +
+                var sqlQuery = "INSERT INTO OrderItems " + //you can use '@' instead of concatenation
                     "(OrderId, ComponentId, Quantity)" +
                     " VALUES(@OrderId, @ComponentId, @Quantity)";
                 await db.ExecuteAsync(sqlQuery, orderItem);
@@ -49,7 +49,7 @@ namespace Autopark.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Components SET OrderID = @OrderId, ComponentId = @ComponentId, Quantity = @Quantity" +
+                var sqlQuery = "UPDATE Components SET OrderID = @OrderId, ComponentId = @ComponentId, Quantity = @Quantity" + //you can use '@' instead of concatenation
                     "WHERE OrderItemId = @OrderItemId";
                 await db.ExecuteAsync(sqlQuery, orderItem);
             }

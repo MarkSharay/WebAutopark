@@ -9,7 +9,7 @@ using Autopark.DAL.Interfaces;
 namespace Autopark.DAL.Repositories{
     public class OrderRepository:IRepository<Order>
     {
-        string connectionString = null;
+        string connectionString = null; //make it private readonly. No need to initialize here
         public OrderRepository(string conn)
         {
             connectionString = conn;
@@ -35,7 +35,7 @@ namespace Autopark.DAL.Repositories{
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Orders " +
+                var sqlQuery = "INSERT INTO Orders " + //you can use '@' instead of concatenation
                     "(VehicleId, Date)" +
                     " VALUES(@VehicleId, @Date)";
                 await db.ExecuteAsync(sqlQuery, order);
@@ -46,7 +46,7 @@ namespace Autopark.DAL.Repositories{
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Orders SET Date = @Date" +
+                var sqlQuery = "UPDATE Orders SET Date = @Date" + //you can use '@' instead of concatenation
                     "WHERE OrderId = @OrderId";
                 await db.ExecuteAsync(sqlQuery, order);
             }
