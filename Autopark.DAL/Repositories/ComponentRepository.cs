@@ -37,9 +37,9 @@ namespace Autopark.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Components " +
-                    "(Name)" +
-                    " VALUES(@Name)";
+                var sqlQuery = @"INSERT INTO Components 
+                (Name) 
+                VALUES(@Name)";
                 await db.ExecuteAsync(sqlQuery, component);
             }
         }
@@ -48,8 +48,8 @@ namespace Autopark.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Components SET Name = @Name" +
-                    "WHERE ComponentId = @ComponentId";
+                var sqlQuery = @"UPDATE Components SET Name = @Name
+                    WHERE ComponentId = @ComponentId";
                 await db.ExecuteAsync(sqlQuery, component);
             }
         }

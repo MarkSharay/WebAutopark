@@ -28,7 +28,7 @@
                     </form>
                 </td>
                 <td>
-                    <form method="post" asp-controller="VehicleType" asp-action="Edit" asp-route-id="@item.VehicleTypeId">
+                    <form method="post" asp-controller="VehicleType" asp-action="GetEditView" asp-route-id="@item.VehicleTypeId">
                         <button class="btn btn-warning" type="submit">Edit</button>
                     </form>
                 </td>
@@ -36,11 +36,11 @@
         }
     </table>
         <button type="submit" class="btn-success">
-            <a asp-action="Create" asp-controller="VehicleType" style="text-decoration: none; color:white">Create vehicle type</a>
+            <a asp-action="GetCreateView" asp-controller="VehicleType" style="text-decoration: none; color:white">Create vehicle type</a>
         </button>
 }
 else
 {
-    <h3 class="">There are no any vehicle types in your data base. Click <a asp-action="Create" asp-controller="VehicleType">here</a> to create first</h3>
+    <h3 class="">There are no any vehicle types in your data base. Click <a asp-action="GetCreateView" asp-controller="VehicleType">here</a> to create first</h3>
 }
 

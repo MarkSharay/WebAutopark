@@ -34,9 +34,9 @@ namespace Autopark.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO VehicleTypes " +
-                    "(TypeName, TaxCoefficient)" +
-                    " VALUES(@TypeName, @TaxCoefficient)";
+                var sqlQuery = @"INSERT INTO VehicleTypes 
+                    (TypeName, TaxCoefficient)
+                     VALUES(@TypeName, @TaxCoefficient)";
                 await db.ExecuteAsync(sqlQuery, vehicleType);
             }
         }
@@ -45,8 +45,8 @@ namespace Autopark.DAL.Repositories
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE VehicleTypes SET TypeName = @TypeName, TaxCoefficient = @TaxCoefficient " +
-                    "WHERE VehicleTypeId = @VehicleTypeId";
+                var sqlQuery = @"UPDATE VehicleTypes SET TypeName = @TypeName, TaxCoefficient = @TaxCoefficient 
+                    WHERE VehicleTypeId = @VehicleTypeId";
                 await db.ExecuteAsync(sqlQuery, vehicleType);
             }
         }

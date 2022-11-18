@@ -8,17 +8,5 @@
         public int ComponentId { get; set; }
         public Component Component { get; set; }
         public int Quantity { get; set; }
-
-        public OrderItem(int orderId, int componentId, int quantity)
-        {
-            OrderId = orderId;
-            ComponentId = componentId;
-            Quantity = quantity;
-        }
-
-        public OrderItem()
-        {
-
-        }
     }
 }

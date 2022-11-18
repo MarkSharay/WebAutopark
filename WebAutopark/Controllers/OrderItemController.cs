@@ -21,14 +21,14 @@ namespace WebAutopark.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create(int id)
+        public async Task<IActionResult> GetCreateView(int id)
         {
             var components = await componentRepository.GetList();
             var order = await orderRepository.Get(id);
             var vehicle = await vehicleRepository.Get(order.VehicleId);
             ViewBag.Vehicle = vehicle;
             ViewBag.Components = components.Select(component => new SelectListItem(component.Name, component.ComponentId.ToString()));
-            return View(new OrderItem() { OrderId = id});
+            return View("Create", new OrderItem() { OrderId = id});
         }
 
         [HttpPost]
@@ -45,13 +45,13 @@ namespace WebAutopark.Controllers
             var vehicle = await vehicleRepository.Get(order.VehicleId);
             var orderItems = await orderItemRepository.GetList();
             var parts = new List<OrderItem>();
+            var components = await componentRepository.GetList();
             ViewBag.Vehicle = vehicle;
-            
             foreach (var orderItem in orderItems)
             {
                 if (orderItem.OrderId == id)
                 {
-                    orderItem.Component = await componentRepository.Get(orderItem.ComponentId);
+                    orderItem.Component = components.FirstOrDefault(component => component.ComponentId==orderItem.ComponentId);
                     parts.Add(orderItem);
                 }
             }

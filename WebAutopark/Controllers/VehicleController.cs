@@ -46,11 +46,11 @@ namespace WebAutopark.Controllers
             
             return View(vehicles);
         }
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> GetCreateView()
         {
             var types = await vehicleTypeRepository.GetList();
             ViewBag.types = types.Select(type => new SelectListItem(type.TypeName, type.VehicleTypeId.ToString()));
-            return View();
+            return View("Create");
         }
 
         [HttpPost]
@@ -67,12 +67,12 @@ namespace WebAutopark.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> GetEditView(int id)
         {
             var types = await vehicleTypeRepository.GetList();
             ViewBag.types = types.Select(type => new SelectListItem(type.TypeName, type.VehicleTypeId.ToString()));
             Vehicle vehicle = await vehicleRepository.Get(id);
-            return View(vehicle);
+            return View("Edit", vehicle);
         }
         [HttpPost()]
         public async Task<ActionResult> ConfirmEdit(Vehicle vehicle)

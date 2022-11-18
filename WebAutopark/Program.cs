@@ -7,11 +7,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddMvc();
-builder.Services.AddTransient<IRepository<VehicleType>, VehicleTypeRepository>(provider => new VehicleTypeRepository(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddTransient<IRepository<Vehicle>, VehicleRepository>(provider => new VehicleRepository(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddTransient<IRepository<Order>, OrderRepository>(provider => new OrderRepository(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddTransient<IRepository<OrderItem>, OrderItemRepository>(provider => new OrderItemRepository(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddTransient<IRepository<Component>, ComponentRepository>(provider => new ComponentRepository(builder.Configuration.GetConnectionString("DefaultConnection")));
+string conn = builder.Configuration.GetConnectionString("DefaultConnection")
+builder.Services.AddTransient<IRepository<VehicleType>, VehicleTypeRepository>(provider => new VehicleTypeRepository(conn));
+builder.Services.AddTransient<IRepository<Vehicle>, VehicleRepository>(provider => new VehicleRepository(conn));
+builder.Services.AddTransient<IRepository<Order>, OrderRepository>(provider => new OrderRepository(conn));
+builder.Services.AddTransient<IRepository<OrderItem>, OrderItemRepository>(provider => new OrderItemRepository(conn));
+builder.Services.AddTransient<IRepository<Component>, ComponentRepository>(provider => new ComponentRepository(conn));
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
 

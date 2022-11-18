@@ -35,9 +35,9 @@ namespace Autopark.DAL.Repositories{
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "INSERT INTO Orders " +
-                    "(VehicleId, Date)" +
-                    " VALUES(@VehicleId, @Date)";
+                var sqlQuery = @"INSERT INTO Orders 
+                    (VehicleId, Date)
+                     VALUES(@VehicleId, @Date)";
                 await db.ExecuteAsync(sqlQuery, order);
             }
         }
@@ -46,8 +46,8 @@ namespace Autopark.DAL.Repositories{
         {
             using (IDbConnection db = new SqlConnection(connectionString))
             {
-                var sqlQuery = "UPDATE Orders SET Date = @Date" +
-                    "WHERE OrderId = @OrderId";
+                var sqlQuery = @"UPDATE Orders SET Date = @Date
+                    WHERE OrderId = @OrderId";
                 await db.ExecuteAsync(sqlQuery, order);
             }
         }

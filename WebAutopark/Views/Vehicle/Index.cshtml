@@ -38,7 +38,7 @@
                     </form>
                 </td>
                 <td>
-                    <form method="post" asp-controller="Vehicle" asp-action="Edit" asp-route-id="@item.VehicleId">
+                    <form method="post" asp-controller="Vehicle" asp-action="GetEditView" asp-route-id="@item.VehicleId">
                         <button class="btn btn-secondary" type="submit">Edit</button>
                     </form>
                 </td>
@@ -52,7 +52,7 @@
     </table>
     
         <button type="submit" class="btn-success">
-            <a asp-action="Create" asp-controller="Vehicle" style="text-decoration: none; color:white">Create vehicle</a>
+            <a asp-action="GetCreateView" asp-controller="Vehicle" style="text-decoration: none; color:white">Create vehicle</a>
         </button>
 
 }else{

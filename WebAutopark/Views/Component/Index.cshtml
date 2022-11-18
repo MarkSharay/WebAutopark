@@ -27,7 +27,7 @@
 					</form>
 				</td>
 				<td>
-					<form method="post" asp-controller="Component" asp-action="Edit" asp-route-id="@item.ComponentId">
+					<form method="post" asp-controller="Component" asp-action="GetEditView" asp-route-id="@item.ComponentId">
 						<button class="btn btn-warning" type="submit">Edit</button>
 					</form>
 				</td>
@@ -35,12 +35,12 @@
 		}
 	</table>
 	<button type="submit" class="btn-success">
-		<a asp-action="Create" asp-controller="Component" style="text-decoration: none; color:white">Create component</a>
+		<a asp-action="GetCreateView" asp-controller="Component" style="text-decoration: none; color:white">Create component</a>
 	</button>
 }
 else
 {
-	<h3 class="">There are no any components in your data base. Click <a asp-action="Create" asp-controller="Component">here</a> to create first.</h3>
+	<h3 class="">There are no any components in your data base. Click <a asp-action="GetCreateView" asp-controller="Component">here</a> to create first.</h3>
 }
 
 

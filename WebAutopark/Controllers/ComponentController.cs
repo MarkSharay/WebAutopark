@@ -18,12 +18,12 @@ namespace WebAutopark.Controllers
             return View(components);
         }
 
-        public ActionResult Create()
+        public ActionResult GetCreateView()
         {
-            return View();
+            return View("Create");
         }
 
-        [HttpPost]
+        [HttpDelete]
         public async Task<ActionResult> Create(Component component)
         {
             await componentRepository.Create(component);
@@ -37,10 +37,10 @@ namespace WebAutopark.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> GetEditView(int id)
         {
             Component component = await componentRepository.Get(id);
-            return View(component);
+            return View("Edit", component);
         }
 
         public async Task<ActionResult> ComfirmEdit(Component component)

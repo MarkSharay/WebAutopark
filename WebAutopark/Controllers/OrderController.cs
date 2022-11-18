@@ -29,7 +29,7 @@ namespace WebAutopark.Controllers
 
             foreach (var item in orders)
             {
-                item.Vehicle = await vehicleRepository.Get(item.VehicleId);
+                item.Vehicle = vehicles.FirstOrDefault(vehicle => vehicle.VehicleId == item.VehicleId);
             }
             switch (sortOption)
             {
@@ -47,11 +47,11 @@ namespace WebAutopark.Controllers
             return View(orders);
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> GetCreateView()
         {
             var vehs = await vehicleRepository.GetList();
             ViewBag.vehicles = vehs.Select(vehicle => new SelectListItem(vehicle.Model, vehicle.VehicleId.ToString()));
-            return View();
+            return View("Create");
         }
        
         [HttpPost]
@@ -61,7 +61,7 @@ namespace WebAutopark.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpDelete]
         public async Task<ActionResult> Delete(int id)
         {
             await orderRepository.Delete(id);

@@ -21,9 +21,9 @@ namespace WebAutopark.Controllers
             return View(types);
         }
 
-        public IActionResult Create()
+        public IActionResult GetCreateView()
         {
-            return View();
+            return View("Create");
         }
 
         [HttpPost]
@@ -40,10 +40,10 @@ namespace WebAutopark.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> GetEditView(int id)
         {
             VehicleType type = await repository.Get(id);
-            return View(type);
+            return View("Edit", type);
         }
 
         [HttpPost()]
